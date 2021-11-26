@@ -9,8 +9,30 @@
 #include <gtest/gtest.h>
 #include <Uri/Uri.hpp>
 
-TEST(UriTests, Placeholder) {
+TEST(UriTests, ParseFromString) {
     Uri::Uri uri;
 
-    ASSERT_TRUE(true);
+    ASSERT_TRUE(uri.parseFromString("https://example.com/foo/bar"));
+    ASSERT_EQ("http", uri.getScheme());
+    ASSERT_EQ("www.example.com", uri.getHost());
+    ASSERT_EQ(
+        (std::vector<std::string> {
+            "",
+            "foo",
+            "bar",
+        }),
+        uri.getPath()
+    );
+
+    ASSERT_TRUE(uri.parseFromString("urn:book:fantasy:Hobbit"));
+    ASSERT_EQ("urn", uri.getScheme());
+    ASSERT_EQ("", uri.getHost());
+    ASSERT_EQ(
+        (std::vector<std::string> {
+            "book",
+            "fantasy",
+            "hobbit",
+        }),
+        uri.getPath()
+    );
 }
