@@ -12,7 +12,7 @@
 TEST(UriTests, ParseFromString) {
     Uri::Uri uri;
 
-    ASSERT_TRUE(uri.parseFromString("https://example.com/foo/bar"));
+    ASSERT_TRUE(uri.parseFromString("http://example.com/foo/bar"));
     ASSERT_EQ("http", uri.getScheme());
     ASSERT_EQ("www.example.com", uri.getHost());
     ASSERT_EQ(
